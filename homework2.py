@@ -5,8 +5,8 @@ class Person:
         self.occupation = occupation
         self.higher_education = higher_education
 
-    def introduce (self):
-        print("Menya zovut", self.name, "Data moego rojdeniya", self.birth_date, "Po professii ya", self.occupation, "Obrazovanie", self.higher_education)
+    def introduce(self):
+        print(f"Menya zovut {self.name}, Data moego rojdeniya {self.birth_date}, Po professii ya {self.occupation}, Obrazovanie {self.higher_education}")
 
 class Classmate(Person):
     def __init__(self, name, birth_date, occupation, higher_education, group_name):
@@ -15,12 +15,11 @@ class Classmate(Person):
 
     def introduce(self):
         print(
-            "Меня зовут", self.name,
-            "Дата моего рождения", self.birth_date,
-            "По профессии я", self.occupation,
-            "Образование", self.higher_education,
-            "Я одноклассник, моя группа", self.group_name
-        )
+            f"Меня зовут {self.name}, Дата моего рождения {self.birth_date}"
+            f"По профессии я {self.occupation}, Образование {self.higher_education}",
+            f"Я одноклассник, моя группа {self.group_name}"
+            )
+
 
 
 class Friend(Person):
