@@ -6,7 +6,7 @@ class Person:
         self.higher_education = higher_education
 
     def introduce(self):
-        print("Menya zovut", self.name, "Data moego rojdeniya", self.birth_date, "Po professii ya", self.occupation, "Obrazovanie", self.higher_education)
+        print(f"Menya zovut {self.name}, Data moego rojdeniya {self.birth_date}, Po professii ya {self.occupation}, Obrazovanie {self.higher_education}")
 
 person1 = Person("Azim", "15.05.1994", "manager", True)
 person2 = Person("Bakyt", "15.05.1992", "ingener", False)
