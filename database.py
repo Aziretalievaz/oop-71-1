@@ -5,6 +5,7 @@ import sqlite3
 def create_table(conn):
     conn.execute("""
         CREATE TABLE IF NOT EXISTS books (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             author TEXT,
             publication_year INTEGER,
@@ -31,9 +32,24 @@ def insert_books(conn, name, author, publication_year, genre,
     conn.commit()
 
 
+def get_books_by_author(conn, author):
+    cursor = conn.execute(
+        "SELECT * FROM books WHERE author = ?",
+        (author,)
+    )
+    return cursor.fetchall()
+
+
+def delete_book_by_id(conn, book_id):
+    conn.execute(
+        "DELETE FROM books WHERE id = ?",
+        (book_id,)
+    )
+    conn.commit()
+
 
 if __name__ == "__main__":
-    connection = sqlite3.connect("database.db")
+    connection = sqlite3.connect("database_v8.db")
 
     try:
         create_table(connection)
@@ -53,9 +69,14 @@ if __name__ == "__main__":
             insert_books(connection, "Три мушкетёра", "Александр Дюма", 1844, "Приключения", 700, 2)
             insert_books(connection, "Алиса в Стране чудес", "Льюис Кэрролл", 1865, "Сказка", 150, 5)
 
+        print("Книги Джоан Роулинг:")
+        books = get_books_by_author(connection, "Джоан Роулинг")
+
+        for book in books:
+            print(book)
+
         cursor = connection.execute("SELECT COUNT(*) FROM books")
         print("Всего книг в базе:", cursor.fetchone()[0])
 
     finally:
         connection.close()
-
